@@ -1,0 +1,27 @@
+{
+  "hosting": {
+    "public": "dist",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "redirects": [
+      {
+        "source": "/getPosts",
+        "destination": "https://us-central1-cloud-test-b0c05.cloudfunctions.net/getPosts",
+        "type": 302
+      },
+      {
+        "source": "/savePost",
+        "destination": "https://us-central1-cloud-test-b0c05.cloudfunctions.net/savePost",
+        "type": 302
+      },
+      {
+        "source": "/getTimetable",
+        "destination": "https://us-central1-cloud-test-b0c05.cloudfunctions.net/getTimetable",
+        "type": 302
+      }
+    ]
+  }
+}
