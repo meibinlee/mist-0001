@@ -28,8 +28,11 @@ function generatePostList() {
 }
 
 
+
 function generateTimetable() {
-  fetch('/getTimetable', headers)
+  const daysOfWeek = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
+  const dayOfWeek = daysOfWeek[new Date().getDay()];
+  fetch('/getTimetable?day='+dayOfWeek, headers)
     .then(response => response.json())
     .then(data => {
       const timetableList = document.getElementById('timetableList');
@@ -39,18 +42,18 @@ function generateTimetable() {
       const daysOfWeek = ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'];
       const dayOfWeek = daysOfWeek[new Date().getDay()];
       const day = document.createElement('h2');
-      day.textContent = dayOfWeek;
+      day.innerHTML = dayOfWeek;
       timetableList.appendChild(day);
 
       timetables.forEach(timetable => {
-        const row = document.createElement('tr');
-        const timeCell = document.createElement('td');
-        timeCell.textContent = `${timetable.time}교시`;
-        row.appendChild(timeCell);
-        const subjectCell = document.createElement('td');
-        subjectCell.textContent = timetable.subject;
-        row.appendChild(subjectCell);
-        timetableList.appendChild(row);
+        const tr = document.createElement('tr');
+        const timetd = document.createElement('td');
+        timetd.innerHTML = `${timetable.time}교시`;
+        tr.appendChild(timetd);
+        const subjecttd = document.createElement('td');
+        subjecttd.innerHTML = timetable.subject;
+        tr.appendChild(subjecttd);
+        timetableList.appendChild(tr);
       });
     })
     .catch(error => {
